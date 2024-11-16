@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 const multer = require("multer");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const { sendDataFromForm } = require("./src/controller");
 require("dotenv").config();
 
 const app = express();
@@ -131,6 +132,8 @@ app.post("/api/send-email/franchise", async (req, res) => {
     res.status(500).send("Error sending email");
   }
 });
+
+app.post("/api/send/formdata" , sendDataFromForm)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
